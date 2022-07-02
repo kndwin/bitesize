@@ -29,7 +29,7 @@ const StyledHeader = styled("div", {
   mb: "$3",
 });
 
-export const IconButtonThemeToggle = () => {
+export function IconButtonThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -48,16 +48,21 @@ export const IconButtonThemeToggle = () => {
       {resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
     </IconButton>
   );
-};
+}
 
-const ButtonLogin = () => {
+function ButtonLogin() {
   return (
     <Button
-      onClick={() => signIn("github")}
+      onClick={() =>
+        signIn("github", {
+          redirect: true,
+          callbackUrl: "http://localhost:3000/dashboard",
+        })
+      }
       size="2"
       css={{ w: "fit-content" }}
     >
       Sign in
     </Button>
   );
-};
+}
