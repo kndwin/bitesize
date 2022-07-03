@@ -11,18 +11,18 @@ datasource db {
 }
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -56,8 +56,34 @@ model VerificationToken {
 }
 
 model Course {
-  id          String @id @default(cuid())
+  id          String      @id @default(cuid())
   label       String
   description String
-	iconSvg			String
+  iconSvg     String
+  curriculum  Curriculum?
+}
+
+model Curriculum {
+  id       String    @id @default(cuid())
+  courseId String    @unique
+  course   Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  sections Section[]
+	description String
+}
+
+model Section {
+	description String
+  id           String     @id @default(cuid())
+  curriculumId String
+  curriculum   Curriculum @relation(fields: [curriculumId], references: [id], onDelete: Cascade)
+  units        Unit[]
+  label        String
+  order        Int
+}
+
+model Unit {
+  id        String  @id @default(cuid())
+  label     String
+  sectionId String
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
 }

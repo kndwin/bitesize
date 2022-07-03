@@ -5,10 +5,12 @@ import { z } from "zod";
 export const coursesRouter = createRouter()
   .query("get-one", {
     input: z.object({
-      id: z.string().nullish(),
+      courseId: z.string().nullish(),
     }),
     async resolve({ input }) {
-      const course = await prisma.course.findFirst({ where: { id: input.id } });
+      const course = await prisma.course.findFirst({
+        where: { id: input.courseId },
+      });
       return course;
     },
   })
@@ -18,3 +20,4 @@ export const coursesRouter = createRouter()
       return courses;
     },
   });
+	

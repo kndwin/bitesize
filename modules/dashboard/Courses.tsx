@@ -6,12 +6,12 @@ import { Text, Box } from "common/ui";
 import trpc from "trpc/hooks";
 
 export const Courses = () => {
-  const { data, status } = trpc.useQuery(["courses.get-all"]);
+  const { data: courses, status } = trpc.useQuery(["courses.get-all"]);
 
   return (
     <StyledGrid>
       {status === "success" &&
-        data.map((course) => <CourseCard {...{ course }} />)}
+        courses.map((course) => <CourseCard key={course.id} {...{ course }} />)}
     </StyledGrid>
   );
 };
