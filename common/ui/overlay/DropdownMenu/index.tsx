@@ -1,13 +1,13 @@
 import type { FC } from "react";
-import type { ComponentProps } from "@stitches/react";
+import type { ComponentProps, CSS } from "@stitches/react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { styled } from "stitches.config";
 import { keyframes } from "@stitches/react";
 
 type DropdownMenuProps = FC<DropdownMenuPrimitive.DropdownMenuProps> & {
-  Trigger?: FC<DropdownMenuPrimitive.DropdownMenuTriggerProps>;
+  Trigger?: FC<ComponentProps<typeof StyledTrigger>>;
   Content?: FC<ComponentProps<typeof StyledContent>>;
-  Item?: FC<DropdownMenuPrimitive.DropdownMenuItemProps>;
+  Item?: FC<DropdownMenuPrimitive.DropdownMenuItemProps & CSS>;
   CheckboxItem?: FC<DropdownMenuPrimitive.DropdownMenuCheckboxItemProps>;
   RadioItem?: FC<DropdownMenuPrimitive.DropdownMenuRadioItemProps>;
   TriggerItem?: FC<DropdownMenuPrimitive.DropdownMenuTriggerItemProps>;
@@ -42,10 +42,10 @@ const StyledTrigger = styled(DropdownMenuPrimitive.Trigger, {
 
 const StyledContent = styled(DropdownMenuPrimitive.Content, {
   minWidth: 120,
-  backgroundColor: "$blackA",
+  backgroundColor: "$slate1",
   borderRadius: "$1",
-  padding: "$2",
-	border: "1px solid $slate9", 
+  padding: "$1",
+  border: "1px solid $slate6",
   boxShadow:
     "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
   "@media (prefers-reduced-motion: no-preference)": {
@@ -63,12 +63,13 @@ const StyledContent = styled(DropdownMenuPrimitive.Content, {
 });
 
 const itemStyles = {
-	fontFamily: "$untitled", 
+  fontFamily: "$untitled",
   fontSize: "$2",
   color: "$slate12",
   borderRadius: "4px",
   display: "flex",
   alignItems: "center",
+	justifyContent: "space-between", 
   height: "$4",
   padding: "$1",
   position: "relative",
@@ -81,12 +82,12 @@ const itemStyles = {
   },
 
   "&:focus": {
-    backgroundColor: "$slate5",
-    outline: "1px solid $slate6",
+    backgroundColor: "$slate2",
+    outline: "1px solid $slate3",
   },
 
   "&:hover": {
-    backgroundColor: "$slate5",
+    backgroundColor: "$slate1",
   },
 };
 

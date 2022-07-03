@@ -1,7 +1,5 @@
 import { Dashboard } from "modules/dashboard";
 
-export default function DashboardPage () {
-	return (
-		<Dashboard />
-	)
+export default function DashboardPage() {
+  return <Dashboard />;
 }

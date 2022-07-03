@@ -190,6 +190,7 @@ export const {
       ...goldA,
       ...whiteA,
       ...blackA,
+      shadow: "$slate3",
     },
     fontSizes: {
       1: "12px",
@@ -243,8 +244,24 @@ export const {
       4: "400",
       max: "999",
     },
+    shadows: {
+      1: "0 1px 2px 0 $colors$shadow",
+      2: "0 1px 3px 0 $colors$shadow, 0 1px 2px -1px $colors$shadow",
+      3: "0 4px 6px -1px $colors$shadow, 0 2px 4px -2px $colors$shadow",
+      4: "0 10px 15px -3px $colors$shadow, 0 4px 6px -4px $colors$shadow",
+      5: "0 20px 25px -5px $colors$shadow, 0 8px 10px -6px $colors$shadow",
+      6: "0 25px 50px -12px $colors$shadow",
+      inner: "inset 0 2px 4px 0 $colors$shadow",
+      none: "0 0 #0000",
+    },
   },
   utils: {
+    w: (value: Stitches.PropertyValue<"width">) => ({
+      width: value,
+    }),
+    h: (value: Stitches.PropertyValue<"height">) => ({
+      height: value,
+    }),
     p: (value: Stitches.PropertyValue<"padding">) => ({
       padding: value,
     }),
@@ -299,8 +316,10 @@ export const {
     fd: (value: Stitches.PropertyValue<"flexDirection">) => ({
       flexDirection: value,
     }),
-    fw: (value: Stitches.PropertyValue<"flexWrap">) => ({ flexWrap: value }),
-
+    fw: (value: Stitches.PropertyValue<"fontWeight">) => ({
+      fontWeight: value,
+    }),
+    fxw: (value: Stitches.PropertyValue<"flexWrap">) => ({ flexWrap: value }),
     ai: (value: Stitches.PropertyValue<"alignItems">) => ({
       alignItems: value,
     }),

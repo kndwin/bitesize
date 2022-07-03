@@ -9,7 +9,7 @@ import { Page, Text, Button, IconButton, Box } from "common/ui";
 
 export function Landing() {
   return (
-    <Page>
+    <Page variant="container">
       <StyledHeader>
         <IconButtonThemeToggle />
       </StyledHeader>
@@ -27,6 +27,7 @@ export function Landing() {
 const StyledHeader = styled("div", {
   d: "flex",
   mb: "$3",
+	fd: "row-reverse"
 });
 
 export function IconButtonThemeToggle() {
@@ -60,6 +61,7 @@ function ButtonLogin() {
         })
       }
       size="2"
+			variant="green"
       css={{ w: "fit-content" }}
     >
       Sign in

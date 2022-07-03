@@ -8,7 +8,7 @@ export default function Home() {
       <Head>
         <title>Bite Size</title>
       </Head>
-			<Landing />
+      <Landing />
     </>
   );
 }
