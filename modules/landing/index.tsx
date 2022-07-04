@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
-
 import { signIn } from "next-auth/react";
 
 import { styled } from "stitches.config";
 import { Page, Text, Button, IconButton, Box } from "common/ui";
+import { IconButtonThemeToggle } from "modules/dashboard/Header";
 
 export function Landing() {
   return (
@@ -27,31 +24,10 @@ export function Landing() {
 const StyledHeader = styled("div", {
   d: "flex",
   mb: "$3",
-	fd: "row-reverse"
+  fd: "row-reverse",
 });
 
-export function IconButtonThemeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const { setTheme, resolvedTheme } = useTheme();
-
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return null;
-
-  const toggleTheme = () => {
-    const targetTheme = resolvedTheme === "light" ? "dark" : "light";
-
-    setTheme(targetTheme);
-  };
-
-  return (
-    <IconButton onClick={toggleTheme} variant="ghost">
-      {resolvedTheme === "light" ? <MoonIcon /> : <SunIcon />}
-    </IconButton>
-  );
-}
-
-function ButtonLogin() {
+const ButtonLogin = () => {
   return (
     <Button
       onClick={() =>
@@ -61,10 +37,10 @@ function ButtonLogin() {
         })
       }
       size="2"
-			variant="green"
+      variant="green"
       css={{ w: "fit-content" }}
     >
       Sign in
     </Button>
   );
-}
+};

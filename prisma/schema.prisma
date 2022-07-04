@@ -83,6 +83,7 @@ model Section {
 
 model Unit {
   id        String  @id @default(cuid())
+  order        Int
   label     String
   sectionId String
   section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)

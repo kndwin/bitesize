@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import { prisma } from "prisma/client";
 
 export default NextAuth({
@@ -12,4 +11,5 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
+	secret: "random-secret-generator-seed"
 });

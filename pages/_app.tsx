@@ -3,9 +3,17 @@ import { AppType } from "next/dist/shared/lib/utils";
 import { AppRouter } from "./api/trpc/[trpc]";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
-import { darkTheme } from "stitches.config";
+import { darkTheme, globalCss } from "stitches.config";
+
+const globalStyle = globalCss({
+  "html, body": {
+    margin: 0,
+    padding: 0,
+  },
+});
 
 const App: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
+  globalStyle();
   return (
     <ThemeProvider
       attribute="class"
@@ -24,24 +32,11 @@ const App: AppType = ({ Component, pageProps: { session, ...pageProps } }) => {
 
 export default withTRPC<AppRouter>({
   config({ ctx }) {
-    /**
-     * If you want to use SSR, you need to use the server's full URL
-     * @link https://trpc.io/docs/ssr
-     */
     const url = process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}/api/trpc`
       : "http://localhost:3000/api/trpc";
 
-    return {
-      url,
-      /**
-       * @link https://react-query.tanstack.com/reference/QueryClient
-       */
-      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-    };
+    return { url };
   },
-  /**
-   * @link https://trpc.io/docs/ssr
-   */
   ssr: true,
 })(App);

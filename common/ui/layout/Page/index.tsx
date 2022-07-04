@@ -5,7 +5,8 @@ export const Page = styled("div", {
   boxSizing: "border-box",
   // Style
   padding: "$2",
-  height: "stretch",
+  height: "100%",
+	minHeight: "100vh", 
   width: "stretch",
   background: "$whiteA1",
 	variants: {

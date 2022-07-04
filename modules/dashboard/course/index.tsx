@@ -1,4 +1,4 @@
-import { ArrowLeftIcon, CheckIcon } from "@radix-ui/react-icons";
+import { CheckIcon } from "@radix-ui/react-icons";
 import { Curriculum } from "@prisma/client";
 
 import { Text, Box, Page, IconButton, Accordion } from "common/ui";
@@ -6,7 +6,7 @@ import { styled } from "stitches.config";
 import { useRouter } from "next/router";
 import trpc from "trpc/hooks";
 
-import { Header } from "modules/dashboard/Header";
+import { Header, IconButtonBack } from "modules/dashboard/Header";
 
 export const Course = () => {
   const router = useRouter();
@@ -25,7 +25,7 @@ export const Course = () => {
 
   return (
     <Page variant="container">
-      <Header left={<IconButtonBack />} />
+      <Header left={<IconButtonBack path="/dashboard" />} />
       <StyledBanner>
         <StyledImage dangerouslySetInnerHTML={{ __html: course?.iconSvg }} />
       </StyledBanner>
@@ -130,20 +130,6 @@ const IconCheck = ({ checked }: { checked: boolean }) => (
     {checked && <CheckIcon />}
   </Box>
 );
-
-const IconButtonBack = () => {
-  const router = useRouter();
-
-  const handleOnClick = () => {
-    router.push("/dashboard");
-  };
-
-  return (
-    <IconButton onClick={handleOnClick}>
-      <ArrowLeftIcon />
-    </IconButton>
-  );
-};
 
 const StyledBanner = styled("div", {
   height: "10em",
