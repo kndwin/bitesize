@@ -3,13 +3,6 @@ import { styled, keyframes, CSS } from "stitches.config";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-type AccordionProps = React.FC<typeof AccordionPrimitive.Root & { children: React.ReactNode}> & {
-  Trigger?: React.FC<typeof StyledTrigger>;
-  Content?: React.FC<typeof StyledContent>;
-  Item?: React.FC<AccordionPrimitive.AccordionItemProps & CSS>;
-  CSS?: CSS;
-};
-
 const slideDown = keyframes({
   from: { height: 0 },
   to: { height: "var(--radix-accordion-content-height)" },
@@ -20,14 +13,14 @@ const slideUp = keyframes({
   to: { height: 0 },
 });
 
-export const Accordion: AccordionProps = styled(AccordionPrimitive.Root, {
+export const Accordion = styled(AccordionPrimitive.Root, {
   borderRadius: "$2",
 });
 
-const StyledItem = styled(AccordionPrimitive.Item, {
+export const AccordionItem = styled(AccordionPrimitive.Item, {
   overflow: "hidden",
   marginTop: 1,
-  border: "1px solid $slate2",
+  border: "2px solid $slate2",
 
   "&:first-child": {
     marginTop: 0,
@@ -51,7 +44,7 @@ const StyledHeader = styled(AccordionPrimitive.Header, {
   display: "flex",
 });
 
-const StyledTrigger = styled(AccordionPrimitive.Trigger, {
+export const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   all: "unset",
   fontFamily: "inherit",
   padding: "$3",
@@ -59,11 +52,11 @@ const StyledTrigger = styled(AccordionPrimitive.Trigger, {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  backgroundColor: "$slate2",
-  "&:hover": { backgroundColor: "$slate3" },
+  backgroundColor: "$slate3",
+  "&:hover": { backgroundColor: "$slate5" },
 });
 
-const StyledContent = styled(AccordionPrimitive.Content, {
+export const AccordionContent = styled(AccordionPrimitive.Content, {
   overflow: "hidden",
   backgroundColor: "$whiteA1",
   padding: "$3",
@@ -82,7 +75,7 @@ const StyledChevron = styled(ChevronDownIcon, {
   "[data-state=open] &": { transform: "rotate(180deg)" },
 });
 
-const AccordionTrigger = React.forwardRef<
+export const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof StyledTrigger>,
   AccordionPrimitive.AccordionTriggerProps & {
     children?: React.ReactNode;
@@ -95,7 +88,3 @@ const AccordionTrigger = React.forwardRef<
     </StyledTrigger>
   </StyledHeader>
 ));
-
-Accordion.Trigger = AccordionTrigger;
-Accordion.Item = StyledItem;
-Accordion.Content = StyledContent;

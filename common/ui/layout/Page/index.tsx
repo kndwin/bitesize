@@ -8,7 +8,6 @@ export const Page = styled("div", {
   height: "100%",
 	minHeight: "100vh", 
   width: "stretch",
-  background: "$whiteA1",
 	variants: {
 		variant: {
 			dashboard: {

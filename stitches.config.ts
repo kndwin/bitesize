@@ -129,7 +129,7 @@ export const {
   globalCss,
   styled,
   theme,
-	keyframes
+  keyframes,
 } = createStitches({
   theme: {
     colors: {
@@ -286,7 +286,6 @@ export const {
       paddingTop: value,
       paddingBottom: value,
     }),
-
     m: (value: Stitches.PropertyValue<"margin">) => ({
       margin: value,
     }),
@@ -327,15 +326,19 @@ export const {
     ac: (value: Stitches.PropertyValue<"alignContent">) => ({
       alignContent: value,
     }),
+    as: (value: Stitches.PropertyValue<"alignSelf">) => ({ alignSelf: value }),
     jc: (value: Stitches.PropertyValue<"justifyContent">) => ({
       justifyContent: value,
     }),
-    as: (value: Stitches.PropertyValue<"alignSelf">) => ({ alignSelf: value }),
+    ji: (value: Stitches.PropertyValue<"justifyItems">) => ({
+      justifyItems: value,
+    }),
     fg: (value: Stitches.PropertyValue<"flexGrow">) => ({ flexGrow: value }),
     fs: (value: Stitches.PropertyValue<"flexShrink">) => ({
       flexShrink: value,
     }),
     fb: (value: Stitches.PropertyValue<"flexBasis">) => ({ flexBasis: value }),
+    fx: (value: Stitches.PropertyValue<"flex">) => ({ flex: value }),
 
     bc: (value: Stitches.PropertyValue<"backgroundColor">) => ({
       backgroundColor: value,
@@ -380,10 +383,14 @@ export const {
     }),
 
     size: (value: Stitches.PropertyValue<"width">) => ({
+      minWidth: value,
+      minHeight: value,
       width: value,
       height: value,
     }),
-
+    cur: (value: Stitches.PropertyValue<"cursor">) => ({
+      cursor: value,
+    }),
     appearance: (value: Stitches.PropertyValue<"appearance">) => ({
       WebkitAppearance: value,
       appearance: value,
@@ -391,6 +398,24 @@ export const {
     backgroundClip: (value: Stitches.PropertyValue<"backgroundClip">) => ({
       WebkitBackgroundClip: value,
       backgroundClip: value,
+    }),
+    lg: (value: Stitches.PropertyValue<"backgroundImage">) => ({
+      backgroundImage: value,
+    }),
+    gtc: (value: Stitches.PropertyValue<"gridTemplateColumns">) => ({
+      gridTemplateColumns: value,
+    }),
+    gtr: (value: Stitches.PropertyValue<"gridTemplateRows">) => ({
+      gridTemplateRows: value,
+    }),
+    gg: (value: Stitches.PropertyValue<"gridGap">) => ({
+      gridGap: value,
+    }),
+    gcg: (value: Stitches.PropertyValue<"columnGap">) => ({
+      columnGap: value,
+    }),
+    grg: (value: Stitches.PropertyValue<"rowGap">) => ({
+      rowGap: value,
     }),
   },
   media: {

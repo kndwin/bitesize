@@ -9,6 +9,7 @@ const globalStyle = globalCss({
   "html, body": {
     margin: 0,
     padding: 0,
+		background: "$slate1"
   },
 });
 

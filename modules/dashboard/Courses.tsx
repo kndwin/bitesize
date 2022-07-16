@@ -1,18 +1,41 @@
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { Course } from "@prisma/client";
 
 import { styled } from "stitches.config";
-import { Text, Box } from "common/ui";
+import { Text, Box, TextField } from "common/ui";
 import trpc from "trpc/hooks";
 
 export const Courses = () => {
+  const router = useRouter();
+  const [search, setSearch] = useState("");
   const { data: courses, status } = trpc.useQuery(["courses.get-all"]);
 
+  const handleOnClick = (courseId: string) => {
+    router.push(`/dashboard/course/${courseId}`);
+  };
+
   return (
-    <StyledGrid>
-      {status === "success" &&
-        courses.map((course) => <CourseCard key={course.id} {...{ course }} />)}
-    </StyledGrid>
+    <Box css={{ d: "flex", fd: "column" }}>
+      <TextField
+        placeholder="Search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+        css={{ w: "fit-content" }}
+      />
+      <StyledGrid>
+        {status === "success" &&
+          courses
+            .filter((c) => (search === "" ? true : c.label.includes(search)))
+            .map((course) => (
+              <CourseCard
+                key={course.id}
+                onClick={() => handleOnClick(course.id)}
+                {...{ course }}
+              />
+            ))}
+      </StyledGrid>
+    </Box>
   );
 };
 
@@ -23,15 +46,15 @@ const StyledGrid = styled("div", {
   gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr));",
 });
 
-const CourseCard = ({ course }: { course: Course }) => {
-  const router = useRouter();
-
-  const handleOnClick = () => {
-    router.push(`/dashboard/course/${course.id}`);
-  };
-
+export const CourseCard = ({
+  course,
+  onClick,
+}: {
+  course: Course;
+  onClick: () => void;
+}) => {
   return (
-    <StyledCard onClick={handleOnClick}>
+    <StyledCard onClick={onClick}>
       <StyledImageContainer>
         <StyledImage dangerouslySetInnerHTML={{ __html: course.iconSvg }} />
       </StyledImageContainer>
@@ -55,7 +78,7 @@ const StyledImage = styled("div", {
 const StyledImageContainer = styled("div", {
   height: "$9",
   width: "100%",
-  background: "$slate2",
+  background: "$slate3",
   display: "flex",
 });
 
@@ -68,8 +91,6 @@ const StyledCard = styled("div", {
   overflow: "hidden",
   "&:hover": {
     background: "$slate1",
-    borderWidth: "1px",
-    borderColor: "$slate8",
     boxShadow: "$4",
   },
 });
