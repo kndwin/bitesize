@@ -6,7 +6,8 @@ export { Page } from "./layout/Page";
 export { Button } from "./dataEntry/Button";
 export { IconButton } from "./dataEntry/IconButton";
 export { Checkbox } from "./dataEntry/Checkbox";
-export { TextField } from './dataEntry/TextField'; 
+export { TextField } from "./dataEntry/TextField";
+export { TextArea } from './dataEntry/TextArea'
 
 // data display
 export { Text } from "./dataDisplay/Text";
@@ -21,4 +22,19 @@ export {
 } from "./dataDisplay/Accordion";
 
 // overlay
-export { DropdownMenu } from "./overlay/DropdownMenu";
+export {
+  Root as DropdownMenu,
+  CheckboxItem as DropdownCheckboxItem,
+  Content as DropdownContent,
+  Item as DropdownItem,
+  RadioItem as DropdownRadioItem,
+  Trigger as DropdownTrigger,
+  TriggerItem as DropdownTriggerItem,
+} from "./overlay/DropdownMenu";
+
+export {
+  Root as PopoverRoot,
+  Content as PopoverContent,
+  Trigger as PopoverTrigger,
+  Close as PopoverClose,
+} from "./overlay/Popover";

@@ -1,19 +1,8 @@
-import type { FC } from "react";
-import type { ComponentProps, CSS } from "@stitches/react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { styled } from "stitches.config";
 import { keyframes } from "@stitches/react";
 
-type DropdownMenuProps = FC<DropdownMenuPrimitive.DropdownMenuProps> & {
-  Trigger?: FC<ComponentProps<typeof StyledTrigger>>;
-  Content?: FC<ComponentProps<typeof StyledContent>>;
-  Item?: FC<DropdownMenuPrimitive.DropdownMenuItemProps & CSS>;
-  CheckboxItem?: FC<DropdownMenuPrimitive.DropdownMenuCheckboxItemProps>;
-  RadioItem?: FC<DropdownMenuPrimitive.DropdownMenuRadioItemProps>;
-  TriggerItem?: FC<DropdownMenuPrimitive.DropdownMenuTriggerItemProps>;
-};
-
-export const DropdownMenu: DropdownMenuProps = DropdownMenuPrimitive.Root;
+export const Root = DropdownMenuPrimitive.Root;
 
 const slideUpAndFade = keyframes({
   "0%": { opacity: 0, transform: "translateY(2px)" },
@@ -35,19 +24,18 @@ const slideLeftAndFade = keyframes({
   "100%": { opacity: 1, transform: "translateX(0)" },
 });
 
-const StyledTrigger = styled(DropdownMenuPrimitive.Trigger, {
+export const Trigger = styled(DropdownMenuPrimitive.Trigger, {
   border: "none",
   background: "transparent",
 });
 
-const StyledContent = styled(DropdownMenuPrimitive.Content, {
+export const Content = styled(DropdownMenuPrimitive.Content, {
   minWidth: 120,
   backgroundColor: "$slate1",
   borderRadius: "$1",
   padding: "$1",
   border: "1px solid $slate6",
-  boxShadow:
-    "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+  boxShadow: "$5", 
   animationDuration: "400ms",
   animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
   animationFillMode: "forwards",
@@ -89,27 +77,21 @@ const itemStyles = {
   },
 };
 
-const StyledItem = styled(DropdownMenuPrimitive.Item, {
-  ...itemStyles,
-});
-const StyledCheckboxItem = styled(DropdownMenuPrimitive.CheckboxItem, {
-  ...itemStyles,
-});
-const StyledRadioItem = styled(DropdownMenuPrimitive.RadioItem, {
+export const Item = styled(DropdownMenuPrimitive.Item, {
   ...itemStyles,
 });
 
-const StyledTriggerItem = styled(DropdownMenuPrimitive.TriggerItem, {
+export const CheckboxItem = styled(DropdownMenuPrimitive.CheckboxItem, {
+  ...itemStyles,
+});
+export const RadioItem = styled(DropdownMenuPrimitive.RadioItem, {
+  ...itemStyles,
+});
+
+export const TriggerItem = styled(DropdownMenuPrimitive.TriggerItem, {
   '&[data-state="open"]': {
     backgroundColor: "$slate6",
     color: "$slate12",
   },
   ...itemStyles,
 });
-
-DropdownMenu.Trigger = StyledTrigger;
-DropdownMenu.Content = StyledContent;
-DropdownMenu.Item = StyledItem;
-DropdownMenu.CheckboxItem = StyledCheckboxItem;
-DropdownMenu.RadioItem = StyledRadioItem;
-DropdownMenu.TriggerItem = StyledTriggerItem;

@@ -9,14 +9,8 @@ import {
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
-import {
-  Page,
-  Text,
-  Avatar,
-  Box,
-  DropdownMenu as Menu,
-  IconButton,
-} from "common/ui";
+import { Page, Text, Avatar, Box, IconButton } from "common/ui";
+import * as Menu from "common/ui/overlay/DropdownMenu";
 import { styled } from "stitches.config";
 
 type HeaderProps = {
@@ -26,20 +20,27 @@ type HeaderProps = {
 export const Header = ({ left }: HeaderProps) => {
   const { data: session } = useSession();
   return (
-    <Flex css={{ jc: "space-between", w: "100%", mb: "$3" }}>
+    <Nav>
       <Flex>{left}</Flex>
       <Flex>
         <IconButtonThemeToggle />
         <AvatarSettings />
       </Flex>
-    </Flex>
+    </Nav>
   );
 };
+
+const Nav = styled("nav", {
+  display: "flex",
+  jc: "space-between",
+  w: "100%",
+  mb: "$3",
+});
 
 const AvatarSettings = () => {
   const { data: session } = useSession();
   return (
-    <Menu>
+    <Menu.Root>
       <Menu.Trigger asChild>
         <Avatar size="4" src={session?.user?.image as string} />
       </Menu.Trigger>
@@ -54,7 +55,7 @@ const AvatarSettings = () => {
           <ExitIcon />
         </Menu.Item>
       </Menu.Content>
-    </Menu>
+    </Menu.Root>
   );
 };
 

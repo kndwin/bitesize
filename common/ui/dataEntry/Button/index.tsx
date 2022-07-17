@@ -127,12 +127,12 @@ export const Button = styled("button", {
           },
       },
       red: {
-        backgroundColor: "$loContrast",
-        boxShadow: "inset 0 0 0 1px $colors$slate7",
+        backgroundColor: "$red3",
+        boxShadow: "inset 0 0 0 1px $colors$red7",
         color: "$red11",
         "@hover": {
           "&:hover": {
-            boxShadow: "inset 0 0 0 1px $colors$slate8",
+            boxShadow: "inset 0 0 0 1px $colors$red8",
           },
         },
         "&:active": {

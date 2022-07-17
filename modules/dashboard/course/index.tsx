@@ -19,7 +19,7 @@ import { StyledIconCheck } from "./unit/common";
 
 import { Header, IconButtonBack } from "modules/dashboard/Header";
 
-type ExtendedCurriculum = Curriculum & {
+export type ExtendedCurriculum = Curriculum & {
   sections: ExtendedSection[];
 };
 

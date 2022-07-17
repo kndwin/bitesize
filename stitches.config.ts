@@ -260,9 +260,21 @@ export const {
     w: (value: Stitches.PropertyValue<"width">) => ({
       width: value,
     }),
+		maw: (value: Stitches.PropertyValue<"maxWidth">) => ({
+			maxWidth: value
+		}), 
+		miw: (value: Stitches.PropertyValue<"minWidth">) => ({
+			minWidth: value
+		}), 
     h: (value: Stitches.PropertyValue<"height">) => ({
       height: value,
     }),
+		mah: (value: Stitches.PropertyValue<"maxHeight">) => ({
+			maxHeight: value
+		}), 
+		mih: (value: Stitches.PropertyValue<"minHeight">) => ({
+			minHeight: value
+		}), 
     p: (value: Stitches.PropertyValue<"padding">) => ({
       padding: value,
     }),
